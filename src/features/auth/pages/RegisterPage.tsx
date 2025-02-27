@@ -1,5 +1,7 @@
-import React from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { FaGoogle } from "react-icons/fa";
 import { PageContainer } from "~/components/layout/PageContainer";
 import { SectionContainer } from "~/components/layout/SectionContainer";
 import { Button } from "~/components/ui/button";
@@ -10,22 +12,41 @@ import {
   CardHeader,
 } from "~/components/ui/card";
 import { Form } from "~/components/ui/form";
-import {
-  type TRegisterFormSchema,
-  registerFormSchema,
-} from "../forms/register";
-import { zodResolver } from "@hookform/resolvers/zod";
-import Link from "next/link";
-import { FcGoogle } from "react-icons/fc";
+import { api } from "~/utils/api";
 import { RegisterFormInner } from "../components/RegisterForm";
+import {
+  registerFormSchema,
+  type TRegisterFormSchema,
+} from "../forms/register";
+import { toast } from "sonner";
 
 export default function RegisterPage() {
+  /*************  ✨ Codeium Command 🌟  *************/
+  // create a form context using the useForm hook from react-hook-form
+  // useForm will automatically validate the form data against the schema
+  // that we pass to it. In this case, we're using the registerFormSchema
+  // zodResolver(registerFormSchema) digunakan untuk melakukan validasi form dengan bantuan Zod.
+  // zodResolver() adalah adapter yang menghubungkan React Hook Form dengan Zod.
+  // registerFormSchema adalah skema validasi yang telah didefinisikan dengan Zod.
   const form = useForm<TRegisterFormSchema>({
     resolver: zodResolver(registerFormSchema),
   });
+  // /******  e932aa6a-81ae-46f1-9a89-accb25ddf334  *******/
+
+  const { mutate: registerUser, isPending: registerUserIsPending } =
+    api.auth.register.useMutation({
+      onSuccess: () => {
+        toast("Your registration is success!");
+        form.setValue("email", "");
+        form.setValue("password", "");
+      },
+      onError: () => {
+        toast.error("Your registration is failed!");
+      },
+    });
 
   const handleRegisterSubmit = (values: TRegisterFormSchema) => {
-    alert("form submitted");
+    registerUser(values);
   };
 
   return (
@@ -37,8 +58,6 @@ export default function RegisterPage() {
         <Card className="w-full max-w-[480px] self-center">
           {/* start of card header */}
           <CardHeader className="flex flex-col items-center justify-center">
-            {/* start od icon */}
-            {/* end of icon */}
             <h1 className="text-2xl font-bold text-primary">
               Create an account
             </h1>
@@ -52,7 +71,10 @@ export default function RegisterPage() {
           <CardContent>
             {/* start of continue with google */}
             <Form {...form}>
-              <RegisterFormInner onRegisterSubmit={handleRegisterSubmit} />
+              <RegisterFormInner
+                isLoading={registerUserIsPending}
+                onRegisterSubmit={handleRegisterSubmit}
+              />
             </Form>
             {/* end of continue with google */}
           </CardContent>
@@ -72,7 +94,7 @@ export default function RegisterPage() {
 
             {/* start of google button */}
             <Button variant="secondary" size="lg" className="w-full">
-              <FcGoogle />
+              <FaGoogle />
               Sign up with Google
             </Button>
             {/* end of google button */}

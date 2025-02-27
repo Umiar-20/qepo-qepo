@@ -19,3 +19,10 @@ model Post {
 
     @@index([name])
 }
+
+
+model Profile {
+    userId String @id @default(cuid())
+    email String @unique
+    username String @unique
+}

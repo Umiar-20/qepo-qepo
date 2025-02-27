@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useFormContext } from "react-hook-form";
 import { Button } from "~/components/ui/button";
+import { Checkbox } from "~/components/ui/checkbox";
 import {
   FormControl,
   FormDescription,
@@ -11,16 +13,21 @@ import {
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { type TRegisterFormSchema } from "../forms/register";
-import { useFormContext } from "react-hook-form";
-import { Checkbox } from "~/components/ui/checkbox";
 
 type TRegisterFormProps = {
   onRegisterSubmit: (values: TRegisterFormSchema) => void;
+  isLoading?: boolean;
 };
 
 export const RegisterFormInner = (props: TRegisterFormProps) => {
+  /*************  ✨ Codeium Command 🌟  *************/
+  // Use the useFormContext hook to access the form context
+  // The generic type TRegisterFormSchema is used to ensure type safety
+  // This allows us to access form methods like handleSubmit, control etc.
   const form = useFormContext<TRegisterFormSchema>();
+  // /******  8dd3f727-8b7a-44d0-ad52-77ab07336904  *******/
 
+  // untuk show password pada form password
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   return (
@@ -72,7 +79,9 @@ export const RegisterFormInner = (props: TRegisterFormProps) => {
       {/* end of password field */}
 
       {/* start of button */}
-      <Button className="mt-4 w-full">Create account</Button>
+      <Button disabled={props.isLoading} className="mt-4 w-full">
+        Create account
+      </Button>
       {/* end of button */}
     </form>
   );
