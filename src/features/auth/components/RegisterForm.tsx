@@ -17,6 +17,8 @@ import { type TRegisterFormSchema } from "../forms/register";
 type TRegisterFormProps = {
   onRegisterSubmit: (values: TRegisterFormSchema) => void;
   isLoading?: boolean;
+  buttonText?: string;
+  showPassword?: boolean;
 };
 
 export const RegisterFormInner = (props: TRegisterFormProps) => {
@@ -51,7 +53,6 @@ export const RegisterFormInner = (props: TRegisterFormProps) => {
         )}
       />
       {/* end of email field */}
-
       {/* start of password field */}
       <FormField
         control={form.control}
@@ -67,20 +68,23 @@ export const RegisterFormInner = (props: TRegisterFormProps) => {
           </FormItem>
         )}
       />
-      {/* start of show password checkbox */}
-      <Label className="flex items-center gap-2">
-        <Checkbox
-          checked={showPassword}
-          onCheckedChange={(checked) => setShowPassword(!!checked)}
-        />
-        Show password
-      </Label>
-      {/* end of show password checkbox */}
       {/* end of password field */}
+
+      {/* start of show password checkbox */}
+      {props.showPassword && (
+        <Label className="flex items-center gap-2">
+          <Checkbox
+            checked={showPassword}
+            onCheckedChange={(checked) => setShowPassword(!!checked)}
+          />
+          Show password
+        </Label>
+      )}
+      {/* end of show password checkbox */}
 
       {/* start of button */}
       <Button disabled={props.isLoading} className="mt-4 w-full">
-        Create account
+        {props.buttonText ?? "Create account"}
       </Button>
       {/* end of button */}
     </form>

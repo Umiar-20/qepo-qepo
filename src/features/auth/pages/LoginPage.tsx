@@ -20,7 +20,7 @@ import {
 } from "../forms/register";
 import { toast } from "sonner";
 
-export default function RegisterPage() {
+export default function LoginPage() {
   /*************  ✨ Codeium Command 🌟  *************/
   // create a form context using the useForm hook from react-hook-form
   // useForm will automatically validate the form data against the schema
@@ -59,10 +59,10 @@ export default function RegisterPage() {
           {/* start of card header */}
           <CardHeader className="flex flex-col items-center justify-center">
             <h1 className="text-2xl font-bold text-primary">
-              Create an account
+              Welcome back to Qepo!
             </h1>
             <p className="text-muted-foreground">
-              join our community to get started
+              kata-kata hari ini Pak Subur?
             </p>
           </CardHeader>
           {/* end of card header */}
@@ -74,7 +74,7 @@ export default function RegisterPage() {
               <RegisterFormInner
                 isLoading={registerUserIsPending}
                 onRegisterSubmit={handleRegisterSubmit}
-                showPassword
+                buttonText="Log in"
               />
             </Form>
             {/* end of continue with google */}
@@ -87,7 +87,7 @@ export default function RegisterPage() {
             <div className="flex w-full items-center justify-between gap-x-4">
               <div className="h-[2px] w-full border-t-2" />
               <p className="flex-1 text-nowrap text-muted-foreground">
-                or continue with
+                or continue
               </p>
               <div className="h-[2px] w-full border-t-2" />
             </div>
@@ -96,17 +96,17 @@ export default function RegisterPage() {
             {/* start of google button */}
             <Button variant="secondary" size="lg" className="w-full">
               <FaGoogle />
-              Sign up with Google
+              Log in with Google
             </Button>
             {/* end of google button */}
 
             <p>
-              Sudah punya akun?{" "}
+              Don&apos;t have an account?{" "}
               <Link
-                href="/login"
+                href="/register"
                 className="text-indigo-400 hover:text-indigo-600"
               >
-                Login
+                Sign up
               </Link>
             </p>
           </CardFooter>
