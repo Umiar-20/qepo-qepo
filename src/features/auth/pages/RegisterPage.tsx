@@ -19,6 +19,7 @@ import {
   type TRegisterFormSchema,
 } from "../forms/register";
 import { toast } from "sonner";
+import { GuestRoute } from "~/components/layout/GuestRoute";
 
 export default function RegisterPage() {
   /*************  ✨ Codeium Command 🌟  *************/
@@ -50,69 +51,71 @@ export default function RegisterPage() {
   };
 
   return (
-    <PageContainer>
-      <SectionContainer
-        padded
-        className="flex min-h-[calc(100vh-144px)] w-full flex-col justify-center"
-      >
-        <Card className="w-full max-w-[480px] self-center">
-          {/* start of card header */}
-          <CardHeader className="flex flex-col items-center justify-center">
-            <h1 className="text-2xl font-bold text-primary">
-              Create an account
-            </h1>
-            <p className="text-muted-foreground">
-              join our community to get started
-            </p>
-          </CardHeader>
-          {/* end of card header */}
-
-          {/* start of card content */}
-          <CardContent>
-            {/* start of continue with google */}
-            <Form {...form}>
-              <RegisterFormInner
-                isLoading={registerUserIsPending}
-                onRegisterSubmit={handleRegisterSubmit}
-                showPassword
-              />
-            </Form>
-            {/* end of continue with google */}
-          </CardContent>
-          {/* end of card content */}
-
-          {/* start of card footer */}
-          <CardFooter className="flex flex-col gap-4">
-            {/* start of separator */}
-            <div className="flex w-full items-center justify-between gap-x-4">
-              <div className="h-[2px] w-full border-t-2" />
-              <p className="flex-1 text-nowrap text-muted-foreground">
-                or continue with
+    <GuestRoute>
+      <PageContainer>
+        <SectionContainer
+          padded
+          className="flex min-h-[calc(100vh-144px)] w-full flex-col justify-center"
+        >
+          <Card className="w-full max-w-[480px] self-center">
+            {/* start of card header */}
+            <CardHeader className="flex flex-col items-center justify-center">
+              <h1 className="text-2xl font-bold text-primary">
+                Create an account
+              </h1>
+              <p className="text-muted-foreground">
+                join our community to get started
               </p>
-              <div className="h-[2px] w-full border-t-2" />
-            </div>
-            {/* end of separator */}
+            </CardHeader>
+            {/* end of card header */}
 
-            {/* start of google button */}
-            <Button variant="secondary" size="lg" className="w-full">
-              <FaGoogle />
-              Sign up with Google
-            </Button>
-            {/* end of google button */}
+            {/* start of card content */}
+            <CardContent>
+              {/* start of continue with google */}
+              <Form {...form}>
+                <RegisterFormInner
+                  isLoading={registerUserIsPending}
+                  onRegisterSubmit={handleRegisterSubmit}
+                  showPassword
+                />
+              </Form>
+              {/* end of continue with google */}
+            </CardContent>
+            {/* end of card content */}
 
-            <p>
-              Sudah punya akun?{" "}
-              <Link
-                href="/login"
-                className="text-indigo-400 hover:text-indigo-600"
-              >
-                Login
-              </Link>
-            </p>
-          </CardFooter>
-          {/* end of card footer */}
-        </Card>
-      </SectionContainer>
-    </PageContainer>
+            {/* start of card footer */}
+            <CardFooter className="flex flex-col gap-4">
+              {/* start of separator */}
+              <div className="flex w-full items-center justify-between gap-x-4">
+                <div className="h-[2px] w-full border-t-2" />
+                <p className="flex-1 text-nowrap text-muted-foreground">
+                  or continue with
+                </p>
+                <div className="h-[2px] w-full border-t-2" />
+              </div>
+              {/* end of separator */}
+
+              {/* start of google button */}
+              <Button variant="secondary" size="lg" className="w-full">
+                <FaGoogle />
+                Sign up with Google
+              </Button>
+              {/* end of google button */}
+
+              <p>
+                Sudah punya akun?{" "}
+                <Link
+                  href="/login"
+                  className="text-indigo-400 hover:text-indigo-600"
+                >
+                  Login
+                </Link>
+              </p>
+            </CardFooter>
+            {/* end of card footer */}
+          </Card>
+        </SectionContainer>
+      </PageContainer>
+    </GuestRoute>
   );
 }
