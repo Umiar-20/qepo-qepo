@@ -2,10 +2,16 @@ import { Button } from "~/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 
 import { useTheme } from "next-themes";
+import { supabase } from "~/lib/supabase/client";
 
 export default function Home() {
   // for dark mode
   const { setTheme } = useTheme();
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    alert("logout berhasil!");
+  };
 
   return (
     <>
@@ -17,6 +23,10 @@ export default function Home() {
         </Button>
         <Button onClick={() => setTheme("light")} size="icon">
           <Sun />
+        </Button>
+
+        <Button onClick={handleLogout} variant="destructive">
+          Logout
         </Button>
       </main>
     </>

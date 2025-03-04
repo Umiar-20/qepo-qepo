@@ -76,69 +76,71 @@ export default function LoginPage() {
   };
 
   return (
-    <PageContainer>
-      <SectionContainer
-        padded
-        className="flex min-h-[calc(100vh-144px)] w-full flex-col justify-center"
-      >
-        <Card className="w-full max-w-[480px] self-center">
-          {/* start of card header */}
-          <CardHeader className="flex flex-col items-center justify-center">
-            <h1 className="text-2xl font-bold text-primary">
-              Welcome back to Qepo!
-            </h1>
-            <p className="text-muted-foreground">
-              kata-kata hari ini Pak Subur?
-            </p>
-          </CardHeader>
-          {/* end of card header */}
-
-          {/* start of card content */}
-          <CardContent>
-            {/* start of continue with google */}
-            <Form {...form}>
-              <RegisterFormInner
-                // isLoading={registerUserIsPending}
-                onRegisterSubmit={handleLoginSubmit}
-                buttonText="Log in"
-              />
-            </Form>
-            {/* end of continue with google */}
-          </CardContent>
-          {/* end of card content */}
-
-          {/* start of card footer */}
-          <CardFooter className="flex flex-col gap-4">
-            {/* start of separator */}
-            <div className="flex w-full items-center justify-between gap-x-4">
-              <div className="h-[2px] w-full border-t-2" />
-              <p className="flex-1 text-nowrap text-muted-foreground">
-                or continue
+    <GuestRoute>
+      <PageContainer>
+        <SectionContainer
+          padded
+          className="flex min-h-[calc(100vh-144px)] w-full flex-col justify-center"
+        >
+          <Card className="w-full max-w-[480px] self-center">
+            {/* start of card header */}
+            <CardHeader className="flex flex-col items-center justify-center">
+              <h1 className="text-2xl font-bold text-primary">
+                Welcome back to Qepo!
+              </h1>
+              <p className="text-muted-foreground">
+                kata-kata hari ini Pak Subur?
               </p>
-              <div className="h-[2px] w-full border-t-2" />
-            </div>
-            {/* end of separator */}
+            </CardHeader>
+            {/* end of card header */}
 
-            {/* start of google button */}
-            <Button variant="secondary" size="lg" className="w-full">
-              <FaGoogle />
-              Log in with Google
-            </Button>
-            {/* end of google button */}
+            {/* start of card content */}
+            <CardContent>
+              {/* start of continue with google */}
+              <Form {...form}>
+                <RegisterFormInner
+                  // isLoading={registerUserIsPending}
+                  onRegisterSubmit={handleLoginSubmit}
+                  buttonText="Log in"
+                />
+              </Form>
+              {/* end of continue with google */}
+            </CardContent>
+            {/* end of card content */}
 
-            <p>
-              Don&apos;t have an account?{" "}
-              <Link
-                href="/register"
-                className="text-indigo-400 hover:text-indigo-600"
-              >
-                Sign up
-              </Link>
-            </p>
-          </CardFooter>
-          {/* end of card footer */}
-        </Card>
-      </SectionContainer>
-    </PageContainer>
+            {/* start of card footer */}
+            <CardFooter className="flex flex-col gap-4">
+              {/* start of separator */}
+              <div className="flex w-full items-center justify-between gap-x-4">
+                <div className="h-[2px] w-full border-t-2" />
+                <p className="flex-1 text-nowrap text-muted-foreground">
+                  or continue
+                </p>
+                <div className="h-[2px] w-full border-t-2" />
+              </div>
+              {/* end of separator */}
+
+              {/* start of google button */}
+              <Button variant="secondary" size="lg" className="w-full">
+                <FaGoogle />
+                Log in with Google
+              </Button>
+              {/* end of google button */}
+
+              <p>
+                Don&apos;t have an account?{" "}
+                <Link
+                  href="/register"
+                  className="text-indigo-400 hover:text-indigo-600"
+                >
+                  Sign up
+                </Link>
+              </p>
+            </CardFooter>
+            {/* end of card footer */}
+          </Card>
+        </SectionContainer>
+      </PageContainer>
+    </GuestRoute>
   );
 }
