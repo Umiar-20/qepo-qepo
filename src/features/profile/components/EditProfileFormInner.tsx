@@ -1,6 +1,5 @@
-import { useForm } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import {
-  Form,
   FormControl,
   FormField,
   FormItem,
@@ -19,15 +18,10 @@ type TProps = {
 };
 
 export const EditProfileFormInner = (props: TProps) => {
-  const form = useForm<TEditProfileFormSchema>({
-    defaultValues: {
-      bio: props.defaultValues.bio ?? "",
-      username: props.defaultValues.username ?? "",
-    },
-  });
+  const form = useFormContext<TEditProfileFormSchema>();
 
   return (
-    <Form {...form}>
+    <>
       {/* start of username field */}
       <FormField
         control={form.control}
@@ -59,6 +53,6 @@ export const EditProfileFormInner = (props: TProps) => {
         )}
       />
       {/* end of bio field */}
-    </Form>
+    </>
   );
 };
