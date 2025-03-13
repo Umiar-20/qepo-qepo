@@ -427,11 +427,17 @@ const ProfilePage = () => {
                     </Button>
                   </>
                 )}
+                {/* Hidden file input for selecting images */}
                 <input
+                  // Accept only image files
                   accept="image/*"
+                  // Handle change event when a user selects a file
                   onChange={onPickProfilePicture}
+                  // Hide the input element from view
                   className="hidden"
+                  // Specify the input type as file
                   type="file"
+                  // Reference to the input element for programmatic access
                   ref={inputFileRef}
                 />
               </div>
